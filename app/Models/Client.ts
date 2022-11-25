@@ -1,8 +1,8 @@
 import { DateTime } from 'luxon'
 import {BaseModel, column, HasMany, hasMany} from '@ioc:Adonis/Lucid/Orm'
-import {beforeCreate} from "@adonisjs/lucid/build/src/Orm/Decorators";
-import * as crypto from 'crypto'
-import Local from "./Local";
+import {beforeCreate} from "@adonisjs/lucid/build/src/Orm/Decorators"
+import Local from "./Local"
+import { randomUUID } from "crypto"
 
 export default class Client extends BaseModel {
   @column({ isPrimary: true })
@@ -28,6 +28,6 @@ export default class Client extends BaseModel {
 
   @beforeCreate()
   public static async generateUUID (model: Client) {
-    model.id = crypto.randomUUID()
+    model.id = randomUUID()
   }
 }
